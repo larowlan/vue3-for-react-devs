@@ -1,302 +1,164 @@
-<!-- .slide: data-background="./images/brushes.jpg" -->
-### ⚡️draft.js, editor.js, slate.js 
-#### choosing the best text editor for your React project
+<!-- .slide: data-background="./images/water.jpg" -->
+### Keeping Drupal relevant 
+#### in a world of Jamstack and CMS-as-a-service
 
 ---
 
-### ️👟 Quick overiew
+### About me
+
+@larowlan
 
 Note:
 
-- Lightning talk
-- Introduce you to three options
-- Discuss their strengths
-- Data model
+- Web development for over 20 years
+- Core framework member, security team
+- I came to Drupal from ancient JavaScript frameworks like YUI
 
 ---
 
-### ✅ The editors
-
-<ul class="pencil-list">
-<li class="fragment fade-in-then-semi-out">draft.js</li>
-<li class="fragment fade-in-then-semi-out">editor.js</li>
-<li class="fragment">slate.js</li>
-</ul>
-
----
-
-### 🔦 Criteria
-
-<ul class="two-columns criteria">
-<li class="💰 fragment fade-in-then-semi-out">sustainability</li>
-<li class="👵 fragment fade-in-then-semi-out">maturity</li>
-<li class="⚖️ fragment fade-in-then-semi-out">license</li>
-<li class="✨ fragment fade-in-then-semi-out">editor features</li>
-<li class="♻️ fragment fade-in-then-semi-out">release cycle</li>
-<li class="🏗 fragment fade-in-then-semi-out">data structure</li>
-<li class="🧱 fragment fade-in-then-semi-out">ecosystem</li>
-<li class="🌏 fragment fade-in-then-semi-out">browser support</li>
-<li class="📦 fragment fade-in-then-semi-out">used by</li>
-<li class="⭐ fragment">github stars</li>
-</ul>
-
----
-
-### ✏️ Editor features
-
-<ul class="two-columns criteria">
-<li class="yep fragment fade-in-then-semi-out">block styles</li>
-<li class="yep fragment fade-in-then-semi-out">inline styles</li>
-<li class="yep fragment fade-in-then-semi-out">undo/redo</li>
-<li class="yep fragment fade-in-then-semi-out">paste</li>
-<li class="yep fragment fade-in-then-semi-out">lists</li>
-<li class="yep fragment fade-in-then-semi-out">nested blocks</li>
-<li class="yep fragment fade-in-then-semi-out">media</li>
-<li class="yep fragment fade-in-then-semi-out">tables</li>
-<li class="yep fragment">links</li>
-</ul>
-
----
-
-<!-- .slide: class="draftjs" -->
-### draft.js
-
-https://draftjs.org/
+### ️Overview
 
 Note:
 
-- Used by facebook messenger, comments, status and notes in production
-- A lot of the features will require custom code, this isn't CKEditor
+- Brief jamstack overview
+- Examine Headless CMS offerings, including SAAS
+- What role can Drupal play
 
 ---
 
-<!-- .slide: class="draftjs" -->
-### draft.js
-
-<ul class="two-columns criteria">
-<li class="💰 fragment fade-in-then-semi-out">Facebook</li>
-<li class="👵 fragment fade-in-then-semi-out">0.11.7<small>🤔</small></li>
-<li class="⚖️ fragment fade-in-then-semi-out">MIT</li>
-<li class="✨ fragment fade-in-then-semi-out">Bare metal🤘</li>
-<li class="♻️ fragment fade-in-then-semi-out">Semver</li>
-<li class="🏗 fragment fade-in-then-semi-out">JSON</li>
-<li class="🧱 fragment fade-in-then-semi-out">Full editor</li>
-<li class="🌏 fragment fade-in-then-semi-out"><del>IE11</del>❓Mobile</li>
-<li class="📦 fragment fade-in-then-semi-out">83.8k</li>
-<li class="⭐ fragment">20k</li>
-</ul>
-
----
-
-<!-- .slide: class="draftjs" -->
-### draft.js - data
-
-<pre><code class="javascript">
-{
-  "entityMap": {
-    "0": {
-      "type": "SOMETHING",
-      "mutability": "IMMUTABLE",
-      "data": {
-        some: 'prop',
-      }
-    },
-  },
-  "blocks": [
-    {
-      "key": "34egr",
-      "text": "This is an immutable entity: hi there.",
-      "type": "unstyled",
-      "depth": 0,
-      "inlineStyleRanges": [],
-      "entityRanges": [
-        {
-          "offset": 29,
-          "length": 8,
-          "key": 0
-        }
-      ],
-      "data": {}
-    }
-  ]
-}
-</code></pre>
-
----
-
-<!-- .slide: class="draftjs" -->
-### draft.js - features
-
-<ul class="two-columns criteria">
-<li class="yep fragment fade-in-then-semi-out">block styles</li>
-<li class="yep fragment fade-in-then-semi-out">inline styles</li>
-<li class="yep fragment fade-in-then-semi-out">undo/redo</li>
-<li class="yep fragment fade-in-then-semi-out">paste</li>
-<li class="yep fragment fade-in-then-semi-out">lists</li>
-<li class="🤔 fragment fade-in-then-semi-out">nested blocks</li>
-<li class="yep fragment fade-in-then-semi-out">media</li>
-<li class="nope fragment fade-in-then-semi-out">tables</li>
-<li class="yep fragment">links</li>
-</ul>
-
----
-
-<!-- .slide: class="editorjs" -->
-### editor.js
-
-https://editorjs.io/
+### First some truths
 
 Note:
 
-- Powers a few media orgs, Russian language
-- Vanilla JavaScript but with React bridges
+- Let's start with some concepts we hold true
 
 ---
 
-<!-- .slide: class="editorjs" -->
-### editor.js
-
-<ul class="two-columns criteria">
-<li class="💰 fragment fade-in-then-semi-out">CodeX</li>
-<li class="👵 fragment fade-in-then-semi-out">2.19.3</li>
-<li class="⚖️ fragment fade-in-then-semi-out">Apache 2.0</li>
-<li class="✨ fragment fade-in-then-semi-out">Block based editor</li>
-<li class="♻️ fragment fade-in-then-semi-out">Semver</li>
-<li class="🏗 fragment fade-in-then-semi-out">JSON</li>
-<li class="🧱 fragment fade-in-then-semi-out">Lots of plugins</li>
-<li class="📦 fragment fade-in-then-semi-out">1.5k</li>
-<li class="⭐ fragment">15k</li>
-</ul>
-
----
-
-<!-- .slide: class="editorjs" -->
-### editor.js - data
-
-<pre><code class="javascript">
-{
-   "time": 1550476186479,
-   "blocks": [
-      {
-         "type": "header",
-         "data": {
-            "text": "Editor.js",
-            "level": 2
-         }
-      },
-      {
-         "type": "paragraph",
-         "data": {
-            "text": "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration."
-         }
-      },
-    ]
-}
-</code></pre>
-
----
-
-<!-- .slide: class="editorjs" -->
-### editor.js - features
-
-<ul class="two-columns criteria">
-<li class="yep fragment fade-in-then-semi-out">block styles</li>
-<li class="yep fragment fade-in-then-semi-out">inline styles</li>
-<li class="yep fragment fade-in-then-semi-out">undo/redo</li>
-<li class="yep fragment fade-in-then-semi-out">paste</li>
-<li class="yep fragment fade-in-then-semi-out">lists</li>
-<li class="yep fragment fade-in-then-semi-out">nested blocks</li>
-<li class="yep fragment fade-in-then-semi-out">media</li>
-<li class="🤞 fragment fade-in-then-semi-out">tables</li>
-<li class="yep fragment fade-in-then-semi-out">links</li>
-</ul>
-
----
-
-<!-- .slide: class="slatejs" -->
-### slate.js
-
-https://docs.slatejs.org/
+### Javascript is eating the web
 
 Note:
 
-- Specifically built to address pain points
-- Nesting support
-- Collaborative as a first-class citizen
-- Not specifically React, but first-class library
+- But JS is the lingua franca of the web
+- PHP still pays well
 
 ---
 
-<!-- .slide: class="slatejs" -->
-### slate.js
-
-<ul class="two-columns criteria">
-<li class="💰 fragment fade-in-then-semi-out">ianstormtaylor</li>
-<li class="👵 fragment fade-in-then-semi-out">0.19.0<small>🤔</small></li>
-<li class="⚖️ fragment fade-in-then-semi-out">MIT</li>
-<li class="✨ fragment fade-in-then-semi-out">Bare Metal🤘</li>
-<li class="♻️ fragment fade-in-then-semi-out">Semver</li>
-<li class="🏗 fragment fade-in-then-semi-out">JSON</li>
-<li class="🧱 fragment fade-in-then-semi-out">Example code</li>
-<li class="📦 fragment fade-in-then-semi-out">55.2k</li>
-<li class="⭐ fragment">20.2k</li>
-</ul>
-
----
-
-<!-- .slide: class="slatejs" -->
-### slate.js - data
-
-<pre><code class="javascript">
-[{
-  type: 'paragraph',
-  children: [
-    { text: 'An opening paragraph with a ' },
-    {
-      type: 'link',
-      url: 'https://example.com',
-      children: [{ text: 'link' }],
-    },
-    { text: ' in it.' },
-  ],
-},
-{
-  type: 'quote',
-  children: [{ text: 'A wise quote.' }],
-},
-{
-  type: 'paragraph',
-  children: [{ text: 'A closing paragraph!' }],
-}]
-</code></pre>
-
----
-
-<!-- .slide: class="slatejs" -->
-### slate.js - features
-
-<ul class="two-columns criteria">
-<li class="yep fragment fade-in-then-semi-out">block styles</li>
-<li class="yep fragment fade-in-then-semi-out">inline styles</li>
-<li class="yep fragment fade-in-then-semi-out">undo/redo</li>
-<li class="yep fragment fade-in-then-semi-out">paste</li>
-<li class="yep fragment fade-in-then-semi-out">lists</li>
-<li class="yep fragment fade-in-then-semi-out">nested blocks</li>
-<li class="yep fragment fade-in-then-semi-out">media</li>
-<li class="yep fragment fade-in-then-semi-out">tables</li>
-<li class="yep fragment fade-in-then-semi-out">links</li>
-</ul>
+### Developers don't want to work in Twig
 
 Note:
 
-- Like draftjs, most of these will require following along with examples
+- FE developers want to use their framework of choice
 
 ---
 
-### Summary 📋
+### Content editors have requirements
 
 Note:
 
-* if you want stability of a large org, use Facebook's draftjs, don't expect nesting
-* if you want to get going fast and a rich set of features out of the box - use editorjs
-* if you want ultimate control, nested support and leave the door open for collaboration - use slatejs
+- We can't throw the baby out with the bathwater
+- Frameworks like Drupal have put a lot of power in the hands of content-editors
+- We can't just take that away
+- I want to pause on this because we will come back to this
+
+---
+
+<!-- .slide: class="jamstack" -->
+### Jamstack
+
+https://jamstack.org
+
+Note:
+
+- This is a decoupled conf, I'm talking to the converted
+- Javascript APIs and Markup
+- Pages are rendered at build time
+- Deployed to a CDN
+- Dynamic functionality added via JS and APIs
+
+---
+
+### Hard problems
+
+Note:
+
+- it's not all rainbows
+- build times
+- cache invalidation
+- lack of context
+- big sites are challenging (github issues my build takes 8hrs)
+
+---
+
+### Headless CMS landscape
+
+https://jamstack.org/headless-cms/
+
+Note:
+
+- The landscape is crowded, 71 API based 
+- 32 open source, the rest are SAAS
+
+---
+
+### Strapi
+
+* open source w/ SAAS version
+* no features above what Drupal can do
+* very nice content editor/site builder experience
+
+Note:
+
+- open source w/ enterprise edition
+- very similar (smaller) feature set to Drupal with a slick UI
+- plugins installed with yarn, which triggers a full rebuild
+- graphql, defaults to v3 style, but you can customise it
+
+---
+
+### Contentful
+
+Note: 
+
+---
+
+### Sanity.io
+
+Note:
+
+---
+
+### Prismic.io
+
+Note:
+
+---
+
+### Apostrophe CMS
+
+Note:
+
+---
+
+### Where does this leave Drupal?
+
+Note:
+
+---
+
+### Our strengths
+
+Note:
+
+- 20 years
+- The community
+- Large organisations/investment
+
+---
+
+### Summary
+
+Note:
+
+- speaker
+- notes
+- go here

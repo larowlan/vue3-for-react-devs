@@ -4,14 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <title>React + rich-text editors</title>
+  <title>Keeping Drupal relevant in a world of Jamstack and CMS-as-a-service</title>
   <meta name="description"
-        content="draft.js, editor.js, slate.js: choosing the best text editor for your React project. React summit 2021.">
+        content="Drupal, Jamstack, CMS as a service, React. Decoupled Days 2021.">
   <meta name="author" content="Lee Rowlands">
 
   <link rel="stylesheet" href="dist/reset.css">
   <link rel="stylesheet" href="dist/reveal.css">
   <link rel="stylesheet" href="dist/theme/night.css">
+  <link rel="stylesheet" href="dist/theme/dark.css">
+
   <style>
     .cross {
       color: red;
@@ -68,119 +70,9 @@
     .reveal pre code {
       margin: 0 -3em;
     }
-
-    .pencil-list li,
-    .criteria li {
-      list-style: none;
-    }
-
-    .pencil-list li:before {
-      content: '✏️';
-      margin-right: 1rem;
-    }
-
-    li.nope:before,
-    li.yep:before,
-    .criteria li:before {
-      content: '❌';
-      margin-right: 1rem;
-    }
-
-    li.yep:before {
-      content: '✅';
-    }
-
-    .two-columns {
-      columns: 2;
-    }
-
-    li.💰:before {
-      content: '💰';
-    }
-
-    li.👵:before {
-      content: '👵';
-    }
-
-    li.🧱:before {
-      content: '🧱';
-    }
-
-    li.⚖️:before {
-      content: '⚖️';
-    }
-
-    li.♻️:before {
-      content: '♻️';
-    }
-
-    li.✨:before {
-      content: '✨';
-    }
-
-    li.🏗:before {
-      content: '🏗';
-    }
-
-    li.⭐:before {
-      content: '⭐';
-    }
-
-    li.🦄:before {
-      content: '🦄';
-    }
-
-    li.🤞:before {
-      content: '🤞';
-    }
-
-    li.🤔:before {
-      content: '🤔';
-    }
-
-    li.🌏:before {
-      content: '🌏';
-    }
-
-    li.📦:before {
-      content: '📦';
-    }
-
-    .draftjs h3:before {
-      content: ' ';
-      display: inline-block;
-      width: 64px;
-      margin-right: 1rem;
-      height: 64px;
-      background: 0 50% transparent url('https://draftjs.org/img/draftjs-logo.svg') no-repeat;
-      background-size: 64px 64px;
-    }
-
-    .editorjs h3:before {
-      content: ' ';
-      display: inline-block;
-      width: 64px;
-      margin-right: 1rem;
-      height: 64px;
-      background: 0 50% transparent url('/images/editorio.svg') no-repeat;
-      background-size: 64px 64px;
-    }
-
-    .slatejs h3 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .slatejs h3:before {
-      content: ' ';
-      display: block;
-      flex: 0 0 94px;
-      width: 94px;
-      margin-right: 1rem;
-      height: 64px;
-      background: 0 50% transparent url('/images/slatejs.png') no-repeat;
-      background-size: 94px 64px;
+    .jamstack h3 {
+      background: transparent url("images/jamstack.png") no-repeat 30% 50%;
+      background-size: 64px;
     }
   </style>
 
