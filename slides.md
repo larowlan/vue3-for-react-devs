@@ -115,33 +115,174 @@ Note:
 
 ---
 
+![](./images/strapi/adding-a-field.png)
+
+---
+
+![](./images/strapi/field-types.png)
+
+---
+
+![](./images/strapi/relationships.png)
+
+---
+
+![](./images/strapi/edit-form.png)
+
+---
+
+![](./images/strapi/media.png)
+
+---
+
+![](./images/strapi/markdown-vs-wysiwyg.png)
+
+---
+
+![](./images/strapi/hooks.png)
+
+---
+
 ### Contentful
 
+* SAAS
+* Commenting threads for editors
+* Nice content-editor experience
+
 Note: 
+- Nice editing UI
+- Relationship support
+- Starter project had 4000+ security issues
+
+---
+
+![](./images/contentful/adding-a-field.png)
+
+---
+
+![](./images/contentful/content-types.png)
+
+---
+
+![](./images/contentful/content-type.png)
+
+---
+
+![](./images/contentful/editing.png)
+
+---
+
+![](./images/contentful/comment-thread.png)
+
+---
+
+![](./images/contentful/off-site-preview.png)
+
+---
+
+![](./images/contentful/webhooks.png)
+
+---
+
+![](./images/contentful/widgets.png)
+
+---
+
+![](./images/contentful/media-library.png)
 
 ---
 
 ### Sanity.io
 
+* SAAS, with local studio
+* Concurrent editing
+* JSON to edit content model
+
 Note:
+- Concurrent editing is a killer feature
+- JSON for the content model is powerful, but a step back for site-builders
+- Very nice offering
+
+---
+
+![](./images/sanity/editing-model.png)
+
+---
+
+![](./images/sanity/item-list.png)
+
+---
+
+![](./images/sanity/editing.png)
+
+---
+
+![](./images/sanity/query-sandbox.png)
+
+---
+
+![](./images/sanity/media-library.png)
 
 ---
 
 ### Prismic.io
 
+* SAAS
+* Releases feature above Drupal
+* Relationships
+* Slices
+
 Note:
+- Releases is like workspaces
+- Slices is like paragraph/block-types
 
 ---
 
-### Apostrophe CMS
+![](./images/prismic/adding-fields.png)
 
-Note:
+---
+
+![](./images/prismic/adding-fields2.png)
+
+---
+
+![](./images/prismic/editing.png)
+
+---
+
+![](./images/prismic/media-library.png)
+
+---
+
+![](./images/prismic/off-site-preview.png)
+
+---
+
+![](./images/prismic/slices.png)
+
+---
+
+![](./images/prismic/releases.png)
 
 ---
 
 ### Where does this leave Drupal?
 
 Note:
+
+---
+
+### Market gaps
+
+- Contextual editing
+- Contextual preview
+- Moderation
+- Form building
+
+Note: 
+- I pointed out before about content editors having requirements
+- This is important because monolith CMS features are lost
+- There are hard-problems in Decoupled land need to be solved
 
 ---
 
@@ -152,8 +293,73 @@ Note:
 - 20 years
 - The community
 - Large organisations/investment
+- Composition of modules
 
 ---
+
+### We've done this before
+
+Note:
+
+- Modules are the building blocks to greatness
+- Rising tide lifts every boat
+
+---
+
+### We just need to do it differently
+
+Note:
+
+- Smart components
+
+---
+
+<!-- .slide: class="twocol" -->
+
+### Examples
+
+- Data binding
+- Live editing
+- Preview functionality
+- Moderation
+- Form building
+- Layout building
+
+---
+
+### Solve the repetitive bits
+
+Note:
+
+- Focus on the parts that are unique to your site
+
+--- 
+
+### We have the tooling now
+
+Note:
+
+- Drupal.org now supports general projects
+- We're shipping packages to npm from d.o
+
+---
+
+### Avoid the framework wars
+
+Note:
+
+- Split out generic bits
+- Build for every framework
+- These SAAS offerings do
+
+---
+
+### This is our opportunity
+
+Note:
+
+- Collaborate on these features
+- Stop creating siloed
 
 ### Summary
 
