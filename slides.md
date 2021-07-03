@@ -333,7 +333,7 @@ Note:
 
 - Focus on the parts that are unique to your site
 
---- 
+---
 
 ### We have the tooling now
 
@@ -361,10 +361,8 @@ Note:
 - Collaborate on these features
 - Stop creating siloed
 
+---
+
 ### Summary
 
 Note:
-
-- speaker
-- notes
-- go here
