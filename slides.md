@@ -11,18 +11,30 @@
 Note:
 
 - Web development for over 20 years
-- Core framework member, security team
+- Core framework manager, security team
 - I came to Drupal from ancient JavaScript frameworks like YUI
 
 ---
 
 ### ️Overview
 
+1) Background
+2) Headless CMS landscape
+3) Where are we now
+4) Where do we want to go
+
 Note:
 
 - Brief jamstack overview
 - Examine Headless CMS offerings, including SAAS
-- What role can Drupal play
+- Explore what this means for Drupal
+
+---
+
+<!-- .slide: data-background="./images/where.jpg" -->
+
+### Chapter 1
+#### Background
 
 ---
 
@@ -38,8 +50,8 @@ Note:
 
 Note:
 
-- But JS is the lingua franca of the web
-- PHP still pays well
+- JS is the lingua franca of the web
+- But PHP still pays well
 
 ---
 
@@ -48,6 +60,7 @@ Note:
 Note:
 
 - FE developers want to use their framework of choice
+- Can you blame them
 
 ---
 
@@ -89,14 +102,18 @@ Note:
 
 ---
 
-### Headless CMS landscape
+<!-- .slide: data-background="./images/landscape.jpg" -->
+
+### Chapter 2
+#### Headless CMS landscape
 
 https://jamstack.org/headless-cms/
 
 Note:
 
-- The landscape is crowded, 71 API based 
+- The landscape is crowded, 71 API based (a further 16 use git for storage)
 - 32 open source, the rest are SAAS
+- Let's look at a few
 
 ---
 
@@ -266,23 +283,76 @@ Note:
 
 ---
 
+<!-- .slide: data-background="./images/now.jpg" -->
+
+### Chapter 3
+#### Where are we now
+
+Note:
+- What's the take home message? 
+- These offerings are coming up fast behind us
+
+---
+
 ### Where does this leave Drupal?
 
 Note:
+
+- Is it worth the hassle of maintaining a Drupal site
+- And a codebase
+
+---
+
+### I don't have the answers
+
+---
+
+### But I have some thought starters
 
 ---
 
 ### Market gaps
 
-- Contextual editing
-- Contextual preview
-- Moderation
-- Form building
-
 Note: 
 - I pointed out before about content editors having requirements
 - This is important because monolith CMS features are lost
 - There are hard-problems in Decoupled land need to be solved
+
+---
+
+### Webform
+
+---
+
+### Layout builder
+
+---
+
+### Contextual preview
+
+---
+
+### Contextual editing
+
+---
+
+### Staged deployments
+
+---
+
+### Workflows & Revisions
+
+---
+
+### i18n
+
+---
+
+### Access controls
+
+---
+
+### Customisation
 
 ---
 
@@ -297,12 +367,38 @@ Note:
 
 ---
 
+### Community
+
+Note:
+
+- When we work together everyone wins
+- Orgs working in isolation is not the answer
+- Rising tide lifts every boat
+
+---
+
+<!-- .slide: data-background="./images/go.jpg" -->
+
+### Chapter 4
+#### Where do we want to go
+
+---
+
+### Decoupled menus initiative
+
+Note:
+
+- The menu integration is not the key deliverable
+- The key deliverable is working out how we as a community can ship npm packages for Decoupled drupal solutions
+
+---
+
 ### We've done this before
 
 Note:
 
+- If this sounds familiar?
 - Modules are the building blocks to greatness
-- Rising tide lifts every boat
 
 ---
 
@@ -310,7 +406,8 @@ Note:
 
 Note:
 
-- Smart components
+- npm packages not modules
+- npm install your features in
 
 ---
 
@@ -320,10 +417,14 @@ Note:
 
 - Data binding
 - Live editing
-- Preview functionality
+- Toggleable previews
 - Moderation
 - Form building
 - Layout building
+
+Note:
+
+- Decoupled menus is the tip of the iceberg
 
 ---
 
@@ -331,6 +432,7 @@ Note:
 
 Note:
 
+- As a community we can solve the boring bits
 - Focus on the parts that are unique to your site
 
 ---
@@ -341,6 +443,10 @@ Note:
 
 - Drupal.org now supports general projects
 - We're shipping packages to npm from d.o
+
+---
+
+### So do we do that in React? Vue? 
 
 ---
 
@@ -358,11 +464,18 @@ Note:
 
 Note:
 
+- I don't have the answers
+- But this is where I think we should focus our effort
 - Collaborate on these features
-- Stop creating siloed
 
 ---
 
 ### Summary
 
 Note:
+
+- So yes JS is eating the web
+- But we have 20 years of hard-learned lessons that are valuable
+- And a community of experts
+- And we're getting our ducks in a row
+- So is this how adapt Drupal for the next 20 years?
