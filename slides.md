@@ -18,16 +18,12 @@ Note:
 
 ### ️Overview
 
-1) Background
-2) Headless CMS landscape
-3) Where are we now
-4) Where do we want to go
-
 Note:
 
-- Brief jamstack overview
+- 4 chapters - background
 - Examine Headless CMS offerings, including SAAS
-- Explore what this means for Drupal
+- where does this leave drupal
+- where do we want to go?
 
 ---
 
@@ -286,18 +282,11 @@ Note:
 <!-- .slide: data-background="./images/now.jpg" -->
 
 ### Chapter 3
-#### Where are we now
+#### Where does this leave Drupal?
 
 Note:
 - What's the take home message? 
 - These offerings are coming up fast behind us
-
----
-
-### Where does this leave Drupal?
-
-Note:
-
 - Is it worth the hassle of maintaining a Drupal site
 - And a codebase
 
@@ -380,7 +369,7 @@ Note:
 <!-- .slide: data-background="./images/go.jpg" -->
 
 ### Chapter 4
-#### Where do we want to go
+#### Where do we want to go?
 
 ---
 
