@@ -15,8 +15,23 @@
   <link rel="stylesheet" href="dist/theme/dark.css">
 
   <style>
+    @font-face { font-family: Rational; src: url("https://www.previousnext.com.au/themes/previousnext_d8_theme/fonts/3AB272_1_0.woff2") format("woff2"), url("https://www.previousnext.com.au/themes/previousnext_d8_theme/fonts/3AB272_1_0.woff") format("woff"); font-style: normal; font-weight: 400; }
+    :root {
+      --pnx-dark-blue: #161b59;
+      --pnx-background-color: white;
+      --pnx-light-blue: #c8f1ff;
+      --pnx-light-blue-opaque: #c8f1ffcc;
+      --pnx-link: #0270b9;
+      --pnx-link-hover: #161b59;
+    }
     .cross {
       color: red;
+    }
+    .img--offscreen {
+      position: absolute;
+      right: 10%;
+      bottom: 10%;
+      display: block;
     }
 
     .check {
@@ -38,15 +53,30 @@
       background-image: linear-gradient(to bottom, #EBECF0 48%, #FFFFFF 67%);
     }
 
+    .reveal .controls .controls-arrow::after, .reveal .controls .controls-arrow::before {
+      background-color: var(--pnx-dark-blue);
+    }
     body .reveal {
-      background: #00235d;
-      background-image: url(images/pnx-logo-dark.png);
+      --r-heading-font: Rational,Helvetica,Arial,sans-serif;
+      --r-selection-color: var(--pnx-dark-blue);
+      --r-heading-font-weight: 700;
+      --r-selection-background-color:  var(--pnx-dark-blue);
+      --r-heading-color: var(--pnx-dark-blue);
+      --r-link-color: var(--pnx-link);
+      --r-link-color-hover: var(--pnx-link-hover);
+      background-color: var(--pnx-background-color);
+      color: var(--pnx-dark-blue);
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='202' height='20' viewBox='0 0 202 20' aria-labelledby='logo-title' role='img'%3e%3ctitle id='logo-title'%3ePrevious Next%3c/title%3e%3cg fill='none'%3e%3cpath class='logo--fill-alt' fill='%23161B59' d='M0 .82C0 .565.205.31.51.31h6.445c3.375 0 6.137 2.77 6.137 6.102 0 3.385-2.762 6.205-6.137 6.205H3.58v6.462c0 .25-.256.51-.512.51H.51c-.305 0-.51-.26-.51-.52V.82zm6.75 8.36c1.535 0 2.813-1.23 2.813-2.872 0-1.487-1.278-2.667-2.813-2.667H3.58v5.54h3.17zM15.7.82c0-.256.204-.512.51-.512h7.825c3.273 0 5.984 2.615 5.984 5.897 0 2.513-1.69 4.616-4.04 5.54l3.73 6.973c.2.36 0 .82-.46.82h-2.87c-.26 0-.41-.153-.46-.256L22.29 12h-3.07v7.026c0 .256-.25.512-.51.512h-2.5c-.306 0-.51-.256-.51-.512V.82zm8.03 8.206c1.43 0 2.71-1.282 2.71-2.82 0-1.437-1.28-2.668-2.71-2.668h-4.45v5.488h4.45zM33.393.82c0-.256.204-.512.51-.512h11.15c.307 0 .51.256.51.513v2.26c0 .26-.203.52-.51.52h-8.08v4.51h6.75c.256 0 .51.26.51.51v2.31c0 .31-.254.52-.51.52h-6.75v4.82h8.13c.308 0 .512.26.512.52v2.258c0 .255-.204.51-.51.51h-11.2c-.308 0-.512-.255-.512-.51V.82zm14.063.154c-.153-.36.05-.718.46-.718h2.813c.25 0 .41.154.46.308l5.26 11.846h.2L61.88.564c.052-.154.205-.308.46-.308h2.813c.41 0 .616.36.463.718l-8.49 18.513c-.102.154-.204.308-.46.308h-.255c-.25 0-.41-.154-.46-.308L47.46.974zm20.1-.154c0-.256.255-.512.51-.512h2.557c.256 0 .512.256.512.513v18.21c0 .26-.256.52-.512.52h-2.557c-.255 0-.51-.25-.51-.51V.82zM84.072 0c5.472 0 9.87 4.41 9.87 9.95 0 5.486-4.398 9.845-9.87 9.845-5.472 0-9.82-4.36-9.82-9.846 0-5.54 4.348-9.95 9.82-9.95zm0 16.205c3.477 0 6.29-2.82 6.29-6.308 0-3.487-2.864-6.36-6.29-6.36s-6.29 2.873-6.29 6.36c0 3.488 2.864 6.308 6.29 6.308zM96.702.82c0-.256.258-.512.514-.512h2.608c.307 0 .51.256.51.513v11.23c0 2.36 1.587 4.16 3.99 4.16 2.404 0 3.99-1.84 3.99-4.15V.77c0-.257.203-.514.51-.514h2.608c.256 0 .512.257.512.513V12.2c0 4.154-3.324 7.54-7.67 7.54-4.297 0-7.62-3.386-7.62-7.54V.82h.05zm18.36 16l.973-1.692c.204-.41.665-.41.92-.205.154.103 2.353 1.692 4.143 1.692 1.432 0 2.506-.923 2.506-2.102 0-1.385-1.177-2.36-3.478-3.282-2.557-1.02-5.165-2.71-5.165-5.94 0-2.46 1.79-5.28 6.19-5.28 2.82 0 4.96 1.44 5.47 1.85.26.16.36.62.16.93l-1.02 1.59c-.2.307-.61.563-.97.307-.2-.156-2.3-1.49-3.83-1.49-1.58 0-2.4 1.024-2.4 1.947 0 1.28 1.026 2.154 3.225 3.077 2.66 1.077 5.725 2.667 5.725 6.205 0 2.82-2.455 5.436-6.29 5.436-3.477 0-5.47-1.64-6.034-2.156-.253-.305-.36-.41-.1-.87zM131.378.514c0-.257.255-.513.51-.513h.666l11.404 12.16h.05V.82c0-.256.206-.512.512-.512h2.503c.256 0 .512.256.512.513v18.52c0 .26-.256.52-.512.52h-.664L134.95 7.18h-.05v11.846c0 .256-.205.512-.512.512h-2.505c-.258 0-.51-.256-.51-.512V.513zm20.66.308c0-.256.205-.512.51-.512h11.15c.307 0 .51.256.51.513V3.08c0 .256-.203.513-.51.513h-8.13v4.513h6.75c.255 0 .51.256.51.512v2.308c0 .308-.255.513-.51.513h-6.75v4.82h8.13c.307 0 .51.25.51.51v2.25c0 .25-.203.51-.51.51h-11.15c-.305 0-.51-.26-.51-.52V.82zm36.87 2.77h-4.192c-.307 0-.51-.257-.51-.513V.82c0-.256.203-.512.51-.512h11.967c.306 0 .51.256.51.513v2.26c0 .26-.204.52-.51.52h-4.194v15.43c0 .26-.26.52-.51.52h-2.56c-.26 0-.51-.253-.51-.51V3.59z'%3e%3c/path%3e%3cpath fill='%233DB7E2' d='M182.414 1.026c.204-.36 0-.77-.46-.77h-3.17c-.206 0-.41.154-.46.257l-3.53 5.795 2.148 3.282 5.472-8.564zm.153 17.743l-5.625-9.08-2.148 3.28 3.938 6.31c.05.1.255.25.46.25h2.966c.41 0 .665-.41.41-.77z'%3e%3c/path%3e%3cpath class='logo--fill-alt' fill='%23161B59' d='M176.942 9.692l-.05-.05-2.15-3.283-3.63-5.95c-.102-.11-.205-.26-.46-.26h-3.273c-.47 0-.72.41-.47.77l5.67 8.77-5.88 9.23c-.21.36 0 .77.51.77h3.07c.2 0 .41-.16.46-.26l3.99-6.41.05-.05 2.15-3.28zm23.217-6.154c-.93 0-1.64-.77-1.64-1.64 0-.924.71-1.642 1.63-1.642.92 0 1.63.77 1.63 1.64.05.873-.72 1.642-1.64 1.642zm.05-3.18c-.87 0-1.49.668-1.49 1.54 0 .87.66 1.487 1.48 1.487.87 0 1.48-.667 1.48-1.54 0-.87-.67-1.486-1.49-1.486zm.3 1.642l.51.667h-.31l-.51-.616h-.41v.62h-.26V.98h.77c.36 0 .61.205.61.513 0 .308-.153.46-.41.513zm-.26-.77h-.51v.616h.46c.25 0 .41-.102.41-.308.05-.205-.11-.307-.36-.307z'%3e%3c/path%3e%3c/g%3e%3c/svg%3e");
       background-position: right bottom;
       background-position-x: 2%;
       background-position-y: 96%;
       background-repeat: no-repeat;
     }
 
+    .reveal a:hover {
+      background-color: var(--pnx-light-blue);
+      outline: 0;
+    }
     .reveal .credit {
       color: #fff;
       font-size: 16px !important;
@@ -57,7 +87,7 @@
     }
 
     section[data-background] {
-      background: #00235dcc;
+      background: var(--pnx-light-blue-opaque);
     }
 
     ul.tight li {
@@ -70,12 +100,16 @@
     .reveal pre code {
       margin: 0 -3em;
     }
-    .jamstack h3 {
-      background: transparent url("images/jamstack.png") no-repeat 30% 50%;
-      background-size: 64px;
-    }
     .twocol ul {
       columns: 2;
+    }
+
+    section.tall {
+      height: 60%;
+    }
+
+    .small {
+      font-size: 1.5rem;
     }
   </style>
 
