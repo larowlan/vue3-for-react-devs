@@ -16,31 +16,19 @@ Note:
 
 ---
 
-### WTFBBQ is CSRF
+### WTF is CSRF
+
+<ul>
+<li class="fragment fade-in-then-out"><del>Crack Squad Rambo Ferrets</del></li>
+<li class="fragment fade-in-then-out"><del>Collection of Striped Rooster Feathers</del></li>
+<li class="fragment fade-in-then-out"><del>Co-ordinated Sentient Roomba Fleet</del></li>
+<li class="fragment fade-in-then-out">Cross Site Request Forgery</li>
+</ul>
 
 Note:
 
-- Like most security exploits, it has a cool acronym
+- Like most security exploits, it has an acronym
 - Let's start by talking about what it's not
-
----
-
-### <del>Crack Squad Rambo Ferrets</del>
-
----
-
-### <del>Co-ordinated Sentient Roomba Fleet</del>
-
----
-
-### <del>Collection of Striped Rooster Feathers</del>
-
----
-
-### Cross Site Request Forgery
-
-Note:
-
 - And I know you're saying, yes those are English words, but what do they mean
 
 ---
@@ -73,7 +61,7 @@ https://owasp.org/www-community/attacks/csrf
 </pre>
 
 Note:
-- And before you say no-one would right that code, I've seen this in apps I've audited
+- And before you say no-one would write that code, I've seen this in apps I've audited
 - Obviously the first thing wrong here it is using GET!
 - But there's no check that the user intended to perform this action if we switch it to POST
 
@@ -164,88 +152,310 @@ Note:
 
 ---
 
-### Cookie level protection
-
-<ul>
-<li class="fragment fade-in-then-out">It depends on your cookies 🍪</li>
-<li class="fragment fade-in-then-out">Specifically the SameSite attribute</li>
-<li class="fragment fade-in-then-out">Strict <pre>Set-Cookie: SESSIONID=xxxxx; SameSite=Strict</pre></li>
-<li class="fragment fade-in-then-out">Lax or None</li>
-</ul>
-
-Note:
-- If you've got your cookies set to Strict, you're OK, however anyone landing on a page from another site will appear to be logged out - fine for banks
-- Particularly difficult for oauth flows
-
----
-
 ### Enter Remix
 
 Note:
 - Remix gets you thinking about actions in terms of the building blocks of the web, forms.
-- So because we're submitting forms via straight up submit again, we need to think about CSRF if we've not got our cookies configured to SameSite: strict
+- So because we're submitting forms via straight up submit again, we need to think about CSRF again
 
 ---
 
 ### Remix example
 
-@todo screenshots
+<pre>
+<code class="language-javascript hljs">
+const Form = ({}) => {
+  return (
+    <Form method="POST">
+      <label htmlFor='name'>Name</label>
+      <input name='name' type='text' id='name'/>
+      <input type='submit' value='Add attendee'/>
+    </Form>
+  );
+}
+</code>
+</pre>
 
-Note: 
-- Here I've setup the jokes example app
-- There's a delete button on each joke
+Note:
+- So lets consider a primitive Remix form
+- We've got a text field and a submit button
+
+---
+
+### Remix example
+
+<pre>
+<code class="language-javascript hljs">
+export const loader = async ({ request }) => {
+  const userId = await getUserSession(request);
+  if (!userId) {
+    throw new Response("Unauthorized", { status: 401 });
+  }
+  return json({});
+};
+</code>
+</pre>
+
+Note:
+- And we're assuming we've got this behind an authentication layer
+- We're not going into details here, but tl;dr our loader function checkes that the user has a session
+
+---
+
+### Remix example
+
+<pre>
+<code class="language-javascript hljs">
+export const action = async({request}) => {
+  const formData = await request.formData();
+  // React to the form submission.
+  // E.g. write to the database
+  return null;
+}
+
+</code>
+</pre>
+
+Note:
+- And of course we've go an action function to handle our submission.
+- Nothing specific here, but assume you're performing some sort of action like writing to the DB
 
 ---
 
 ### Crafting the attack
 
-todo show the demo here
+Nothing special here
+<pre>
+<code class="language-html hljs">
+<!-- Visited site -->
+<iframe height="0" width="0" src="https://evil.com/trigger.html" />
+
+<!-- trigger.html -->
+<form action="https://yoursite.com/that-form">
+    <input name="name" value="danny" type="hidden"/>
+    <input type="submit" />
+</form>
+<script type="text/javscript">
+    window.onload = function() {
+      document.forms[0].submit();
+    };
+</script>
+</code>
+
+</pre>
 
 Note:
 - Here's the attack code
 - Trick a logged in user into visiting the page
-- Voila the joke is deleted without the user being aware
-- Big deal is a joke, but what it was a banking transaction or something valuable?
+- Voila the action is completed without the user being aware
 
 ---
 
-### Mitigations
+### Avoiding CSRF with Remix
+
+<pre><code>
+🍪 SetCookie: session=...; SameSite=Lax
+🍪 SetCookie: session=...; SameSite=Strict
+</code></pre>
+<div class="fragment">*Used in tutorials, but not in docs</div>
+
+---
+
+### But...
+
+> This attribute should not replace having a CSRF Token.<br>
+> Instead, it should co-exist with that token in order to protect the user in a more robust way.
+
+<p class="small">OWASP</p>
+
+---
+
+### Browser support
+
+https://caniuse.com/same-site-cookie-attribute
+
+#### 93% of users
+
+<div class="fragment">We're almost there!</div>
+
+---
+
+### None, Lax or Strict?
+
+When the request originates from a different domain:
+<ul>
+<li class="fragment fade-in-then-out">SameSite:None - always send</li>
+<li class="fragment fade-in-then-out">SameSite:Lax - GET only</li>
+<li class="fragment fade-in-then-out">Samesite:Strict - send nothing</li>
+</ul>
+
+Note:
+- If you've got your cookies set to Strict and you can be sure your user's browsers support SameSite attribute, you're OK
+- Strict - landing on a page from another site will appear to be logged out - fine for banks
+- Particularly difficult for oauth flows
+
+---
+
+### Token based mitigation
 
 Enter the <em>Synchronizer Token Pattern</em>
 
+<ul>
+<li class="fade-in-then-out fragment">Generate a unique token per session per form*</li>
+<li class="fade-in-then-out fragment">Transmit that with the form</li>
+<li class="fade-in-then-out fragment">Send it back</li>
+<li class="fade-in-then-out fragment">Validate the token server side</li>
+</ul>
+<p class="fragment fade-in-then-out">*Or per request</p>
+
 Note:
-- @todo describe the mechanics here
-- form approach, custom header approach (even better)
+- Use a secure random library to generate a strong token
+- Either send it as a custom header or as a hidden field in the form
+
+---
+
+### Generate some secure random keys
+
+<ul>
+<li class="fade-in-then-out fragment">A hash salt</li>
+<li class="fade-in-then-out fragment">A private key</li>
+</ul>
+<pre>
+<code class="language-javascript hljs">
+import { randomBytes } from "crypto";
+randomBytes(55).toString('base64');
+</code>
+</pre>
+
+
+Note
+- the hash salt should not be stored in/with your database
+- should have one private key per environment
 
 ---
 
 ### Implementing for Remix
 
-@todo code samples
+Generate a unique token per session/identifier
 
----
+<pre class="fade-in-then-out fragment">
+<code class="language-javascript hljs">
+import { creatHmac, randomBytes } from 'crypto';
 
-### 🚧 Warning: opinions ahead
+const getCSRFSeed(session) {
+  let seed = session.get('csrf_seed');
+  if (seed) {
+    return seed;
+  }
+  seed = randomBytes(32).toString('base64');
+  session.set('csrf_seed', seed);
+  return seed;
+}
 
----
-
-### Remix needs this baked in
-
-TODO update link
-<ul>
-<li class="fragment fade-in-then-out">https://github.com/remix-run/remix/issues/XXX</li>
-</ul>
+export const createCSRFToken = (identifier, session) => {
+  const hmac = crypto.createHmac('sha256', `${process.env.HASH_SALT}${process.env.PRIVATE_KEY}${getCSRFSeed(session)}`);
+  const data = hmac.update(identifier);
+  return data.digest('hex');
+}
+    </code>
+</pre>
 
 Note:
-- I think Remix should bake this in using the more secure custom request
-- It should be easy to generate a CSRF token on each form render, and attach it to the request
-- The clientside code should handle sending it a custom header
-- The action handler on the backend should validate it and reject invalid values
-- @todo add an issue to add it
+- In this scenario seed would be e.g a unique identifier for the form or operation
+- This prevents token reuse for the same session
 
 ---
 
-### Credits
+### Implementing for Remix
 
-- https://flickr.com/photos/tgerus/3807995646
-- http://slides.com/gaborhojtsy/state-of-drupal-10-readiness-sept-2021
+Transmit with the form - step 1 - loader
+
+<pre class="fade-in-then-out fragment">
+<code class="language-javascript hljs">
+export const loader = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const csrf = createCSRFToken(__filename, session);
+  return json(
+    { csrf },
+    { headers: { "Set-Cookie": await commitSession(session) } }
+  );
+};
+
+}
+</code>
+</pre>
+
+---
+
+### Implementing for Remix
+
+Transmit with the form - step 2 - form
+
+<pre class="fade-in-then-out fragment">
+<code class="language-javascript hljs">
+const Form = () => {
+  const { csrf } = useRouteData();
+   return (
+    <Form method="post">
+      <input type="hidden" name="form_token" value={csrf} />
+      {/* Rest of the form */}
+    </Form>
+  );
+};
+
+}
+</code>
+</pre>
+
+---
+
+### Implementing for Remix
+
+Validation - the code
+
+<pre class="fade-in-then-out fragment">
+<code class="language-javascript hljs">
+import { timingSafeEqual } from 'crypto';
+import { Buffer } from 'buffer';
+export const validateCSRFToken = async (actual, identifier, session) => {
+  const expected = createCSRFToken(identifier, session);
+  if (!timingSafeEqual(Buffer.from(expected), Buffer.from(actual))
+    throw new Error("CSRF tokens do not match.");
+  }
+}
+</code>
+</pre>
+
+Note:
+- timingSafeEquals here to avoid timing attacks
+
+---
+
+
+### Implementing for Remix
+
+Validation - in the action
+
+<pre class="fade-in-then-out fragment">
+<code class="language-javascript hljs">
+export const action = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  try {
+    const body = await request.formData();
+    await validateCSRFToken(body.get('form_token'), __filename, session);
+  } catch (error) {
+    session.flash("error", 'The form has become outdated. Press the back button, copy any unsaved work in the form, and then reload the page.');
+    return redirect("/error-page", {
+      headers: { "Set-Cookie": await commitSession(session) },
+    });
+  }
+}
+</code>
+</pre>
+
+---
+
+### Questions?
+
+Note:
+- A few crypto bugs in that code (don't copy paste crypto off the internet)
