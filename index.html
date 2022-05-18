@@ -34,6 +34,9 @@
       display: block;
     }
 
+    .reveal blockquote {
+      width: 100%;
+    }
     .check {
       color: green;
     }
@@ -102,6 +105,22 @@
     }
     .twocol ul {
       columns: 2;
+    }
+
+    .underline {
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+    }
+    .underline::before {
+      width: 100%;
+      z-index: -1;
+      height: 2rem;
+      display: block;
+      background-color: var(--pnx-light-blue);
+      position: absolute;
+      top: 1rem;
+      content: "";
     }
 
     section.tall {
