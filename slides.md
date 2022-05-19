@@ -1,24 +1,9 @@
 
-## Avoiding CSRF with Remix
+### ⚡️Avoiding CSRF with Remix ⚡️
 
 ---
 
-### About me
-
-<span class="underline">@larowlan</span>
-
-<div class="fragment fade-in">💻️We're hiring!</div>
-
-Note:
-
-- Senior Developer at PreviousNext
-- PHP Development for 22 years
-- Major contributor to Drupal, part of the Drupal security team
-- Lots of Javascript last 4-5 years
-
----
-
-### WTF is CSRF
+### ⚡️WTF is CSRF ⚡️
 
 <div class="fragment fade-in"><span class="underline">Cross Site Request Forgery</span></div>
 <blockquote class="fragment fade-in-then-out">
@@ -35,7 +20,7 @@ Note:
 
 ---
 
-### Simplest (worst) example
+### ⚡️Simplest (worst) example ⚡️
 
 <pre class="fragment fade-in-then-out">
     <code class="language-javascript hljs">
@@ -61,24 +46,12 @@ Note:
 
 ---
 
-### Exploiting the simple example
+### ⚡️Exploiting the example ⚡️
 
 <pre class="fragment fade-in-then-out">
 <code class="language-html hljs">
+<!-- visited site -->
 <img src="https://yoursite.com/favourites/delete/3" />
-</code>
-</pre>
-
-Note:
-- So this is fairly low impact, its deleting a favourite, but what if it was a more important action?
-
----
-
-### What if we used POST?
-
-<pre class="fragment fade-in-then-out">
-<code class="language-html hljs">
-<!-- Visited site -->
 <iframe height="0" width="0" src="https://evil.com/trigger.html"></iframe>
 
 <!-- trigger.html -->
@@ -91,26 +64,15 @@ Note:
       document.forms[0].submit();
     };
 </script>
-
 </code>
 </pre>
 
----
-
-### How does this work?
-
-<ul>
-<li class="fragment fade-in-then-out">🤔 If you think about it, that's how the web works</li>
-<li class="fragment fade-in-then-out">🍪 Cookies are baked into its DNA</li>
-</ul>
-
 Note:
-- Its just links or imgs in the case of GET - so that's why we don't use GET for mutations
-- Its just forms in the case of POST - so that's why you need CSRF protection
+- So this is fairly low impact, its deleting a favourite, but what if it was a more important action?
 
 ---
 
-### Enter Remix
+### ⚡️Enter Remix ⚡️
 
 Note:
 - Remix gets you thinking about actions in terms of the building blocks of the web, forms.
@@ -120,7 +82,7 @@ unless you're configuring CORS with * you're basically in the same boat
 
 ---
 
-### Remix example
+### ⚡️Remix example ⚡️
 
 <pre>
 <code class="language-jsx hljs">
@@ -142,8 +104,7 @@ Note:
 
 ---
 
-### Remix example
-
+### ⚡️Remix example ⚡️
 <pre>
 <code class="language-javascript hljs">
 export const loader = async ({ request }) => {
@@ -162,7 +123,7 @@ Note:
 
 ---
 
-### Remix example
+### ⚡️Remix example ⚡️
 
 <pre>
 <code class="language-javascript hljs">
@@ -182,46 +143,20 @@ Note:
 
 ---
 
-### Crafting the attack
-
-Nothing special here
-<pre>
-<code class="language-html hljs">
-<!-- Visited site -->
-<iframe height="0" width="0" src="https://evil.com/trigger.html"></iframe>
-
-<!-- trigger.html -->
-<form action="https://yoursite.com/that-form">
-    <input name="name" value="danny" type="hidden"/>
-    <input type="submit" />
-</form>
-<script type="text/javscript">
-    window.onload = () => {
-      document.forms[0].submit();
-    };
-</script>
-</code>
-
-</pre>
-
-Note:
-- Here's the attack code
-- Trick a logged in user into visiting the page
-- Voila the action is completed without the user being aware
-
----
-
-### Avoiding CSRF with Remix
+### ⚡️Avoiding CSRF with Remix ⚡️
 
 <pre><code>
 🍪 SetCookie: session=...; SameSite=Lax
 🍪 SetCookie: session=...; SameSite=Strict
 </code></pre>
-<div class="fragment">*Used in tutorials, but not in docs</div>
+
+Note:
+Lax = only for GET
+Strict = not for GET or POST
 
 ---
 
-### But...
+### ⚡️But... ⚡️
 
 > This attribute should not replace having a CSRF Token.<br>
 > Instead, it should co-exist with that token in order to protect the user in a more robust way.
@@ -230,7 +165,7 @@ Note:
 
 ---
 
-### Browser support
+### ⚡️Browser support ⚡️
 
 https://caniuse.com/same-site-cookie-attribute
 
@@ -240,23 +175,7 @@ https://caniuse.com/same-site-cookie-attribute
 
 ---
 
-### None, Lax or Strict?
-
-When from a different domain:
-<ul>
-<li class="fragment fade-in">SameSite:<span class="underline">None</span> - always send</li>
-<li class="fragment fade-in">SameSite:<span class="underline">Lax</span> - GET only</li>
-<li class="fragment fade-in">Samesite:<span class="underline">Strict</span> - send nothing</li>
-</ul>
-
-Note:
-- If you've got your cookies set to Strict and you can be sure your user's browsers support SameSite attribute, you're OK
-- Strict - landing on a page from another site will appear to be logged out - fine for banks
-- Particularly difficult for oauth flows
-
----
-
-### Token based mitigation
+### ⚡️Token based mitigation ⚡️
 
 Enter the <em>Synchronizer Token Pattern</em>
 
@@ -273,7 +192,7 @@ Note:
 
 ---
 
-### Start with secure random keys
+### ⚡️Secure random keys ⚡️
 
 <ul>
 <li class="fade-in fragment">A <span class="underline">hash salt</span></li>
@@ -292,7 +211,7 @@ Note:
 
 ---
 
-### Implementing for Remix
+### ⚡️Implementing for Remix ⚡️
 
 Generate a <span class="underline">unique random seed</span> per session
 
@@ -314,7 +233,7 @@ const getCSRFSeed = (session) => {
 
 ---
 
-### Implementing for Remix
+### ⚡️Implementing for Remix ⚡️
 
 Generate a unique token <span class="underline">per session and identifier</span>
 
@@ -339,7 +258,7 @@ Note:
 
 ---
 
-### Implementing for Remix
+### ⚡️Implementing for Remix ⚡️
 
 Transmit with the form - Step 1 - loader
 
@@ -358,7 +277,7 @@ export const loader = async ({ request }) => {
 
 ---
 
-### Implementing for Remix
+### ⚡️Implementing for Remix ⚡️
 
 Transmit with the form - step 2 - form
 
@@ -380,7 +299,7 @@ const Form = () => {
 
 ---
 
-### Implementing for Remix
+### ⚡️Implementing for Remix ⚡️
 
 Validation - the code
 
@@ -403,7 +322,7 @@ Note:
 ---
 
 
-### Implementing for Remix
+### ⚡️Implementing for Remix ⚡️
 
 Validation - in the action
 
@@ -426,5 +345,8 @@ export const action = async ({ request }) => {
 
 ---
 
-### Questions?
+### ⚡️Questions ⚡️
+
+* GitNation discord server
+* twitter.com/larowlan
 
