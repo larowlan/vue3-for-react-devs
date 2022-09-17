@@ -15,34 +15,23 @@
 Note:
 
 - Like most security exploits, it has an acronym
-- Let's start by talking about what it's not
-- And I know you're saying, yes those are English words, but what do they mean
+- ↩ It stands for cross site request forgery
+- ↩ Basically the attacker tricks a user into accessing a URL that performs an action using their existing session 
 
 ---
 
 ### ⚡️Simplest (worst) example ⚡️
 
 <pre class="fragment fade-in-then-out">
-    <code class="language-javascript hljs">
-        import express from "express"
-        import { checkLogin } from "@app/user/auth"
-        import { favouritesRepository } from "@app/model/favourites"
-        const app = express()
-    
-        app.get("/favourites/delete/:favouriteId", (req, res) => {
-            if (!checkLogin()) {
-                return res.sendStatus(403);
-            }
-            favouritesRepository.deleteById(req.params.favouriteId)
-            res.send("OK!")
-        })
+    <code class="language-html hljs">
+      <img src="https://yoursite.com/favourites/delete/3" />    
     </code>
 </pre>
 
 Note:
-- And before you say no-one would write that code, I've seen this in apps I've audited
-- Obviously the first thing wrong here it is using GET!
-- But there's no check that the user intended to perform this action if we switch it to POST
+- Simplest form is eg an image with a URL that performs an action
+- ↩ And before you say no-one would write that code, I've seen this in apps I've audited
+- ↩ Obviously the first thing wrong here it is using GET!
 
 ---
 
@@ -51,7 +40,6 @@ Note:
 <pre class="fragment fade-in-then-out">
 <code class="language-html hljs">
 <!-- visited site -->
-<img src="https://yoursite.com/favourites/delete/3" />
 <iframe height="0" width="0" src="https://evil.com/trigger.html"></iframe>
 
 <!-- trigger.html -->
@@ -68,7 +56,8 @@ Note:
 </pre>
 
 Note:
-- So this is fairly low impact, its deleting a favourite, but what if it was a more important action?
+- But using POST doesn't prevent it either
+- ↩ In this scenario the trigger is in a hidden iframe that is submitted on page load
 
 ---
 
@@ -77,8 +66,8 @@ Note:
 Note:
 - Remix gets you thinking about actions in terms of the building blocks of the web, forms.
 - If you've been building apps with Javascript you've probably been using fetch or axios, and in those scenarios CORS protects you
-unless you're configuring CORS with * you're basically in the same boat
-- So because we're submitting forms via straight up submit again, we need to think about CSRF again
+  (unless of course you're configuring CORS with allow origin * and allow credentials, where you're basically in the same boat)
+- So because we're submitting forms via straight up multipart form-data again, we need to think about CSRF
 
 ---
 
@@ -139,7 +128,7 @@ export const action = async({request}) => {
 
 Note:
 - And of course we've go an action function to handle our submission.
-- Nothing specific here, but assume you're performing some sort of action like writing to the DB
+- Haven't gone into detail here, but lets assume you're performing some sort of action like writing to the DB
 
 ---
 
@@ -151,8 +140,9 @@ Note:
 </code></pre>
 
 Note:
-Lax = only for GET
-Strict = not for GET or POST
+- So the first thing you need to do is ensure you're using the SameSite attribute on your cookies.
+- Lax = only send the cookie for GET requests originating from another domain
+- Strict = don't send it for any requests originating from another domain
 
 ---
 
@@ -163,6 +153,9 @@ Strict = not for GET or POST
 
 <p class="small">OWASP</p>
 
+Note:
+- This attribute isn't enough on its own just yet
+
 ---
 
 ### ⚡️Browser support ⚡️
@@ -172,6 +165,9 @@ https://caniuse.com/same-site-cookie-attribute
 #### <span class="underline">93%</span> of users
 
 <div class="fragment">We're almost there!</div>
+
+Note:
+- Your app may have closer to 100% depending on your user's browser mix
 
 ---
 
@@ -187,8 +183,7 @@ Enter the <em>Synchronizer Token Pattern</em>
 </ul>
 
 Note:
-- Use a secure random library to generate a strong token
-- Either send it as a custom header or as a hidden field in the form
+- So the recommended way is to add token based mitigation
 
 ---
 
@@ -206,8 +201,9 @@ randomBytes(55).toString("base64");
 </pre>
 
 Note:
-- the hash salt should not be stored in/with your database 
-- should have one private key per environment
+- We start with some secure random keys
+- ↩ the hash salt should not be stored in/with your database 
+- ↩ should have one private key per environment
 
 ---
 
