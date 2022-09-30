@@ -66,7 +66,7 @@ Note:
 
 ### 2️⃣ FID 🖱️
 
-<div class="fragment fade-in"><span class="underline">F</span>irst <span class="underline">I</span>nput <span class="underline">D</span>delay</div>
+<div class="fragment fade-in"><span class="underline">F</span>irst <span class="underline">I</span>nput <span class="underline">D</span>elay</div>
 
 Note:
 
