@@ -264,7 +264,7 @@ Note:
 
 Note:
 - First let's talk about the elephant in the room, your site is lean, you've optimised your images, and then the marketing department comes along and adds HotJar, Facebook Pixel and copious amounts of tracking JS via 
- Google Tag Manager and your site is now parsing more fetching and parsing 5MB of Javascript before it can even render the page  
+ Google Tag Manager and your site is now fetching and parsing 5MB of Javascript before it can even render the page  
 - In this scenario you need to go out and around the default GTM module and go bare metal
 - A promising solution in this space is Partytown 🎉 which offloads third party scripts to web-workers but you're going to need to get your hands dirty here, there's no drop in module
 
