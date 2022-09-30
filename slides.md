@@ -15,7 +15,7 @@
 ### ⚠️ TLAs ahead
 
 <div class="fragment fade-in"><p>Play along with <span class="underline">TLA bingo</span></p>
-<p>https://bit.ly/cwv-bingo</p>
+<p>larowlan.github.io/cwv-bingo/</p>
 <p>Win great* prizes</p>
 </div>
 <div class="footnote fragment fade-in small">*Prizes may not be great</div>
