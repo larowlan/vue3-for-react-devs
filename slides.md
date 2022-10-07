@@ -148,7 +148,7 @@ Note:
 
 ---
 
-### Minimzing the size of the dom 🧩
+### Minimize the dom 🧩
 
 Theming with Bundle Classes, Layout builder and Twig
 
@@ -235,7 +235,7 @@ Note:
 - If you've got a Vue or React app that's powering your mega-menu or an interactive component, don't load React dom on page load
 - Only load it when the user scrolls to the app
 - But as I mentioned before this also applies to images and you can also put the lazy attribute on iframes
-- Video embed (e.g YouTube) is a killer, 1MB of JS - using the Lazy contrib module can put this on a diet and only load it as required
+- Video embed (e.g YouTube) is a killer, 1MB of JS - from 10.1 you can flag these as lazy but in the meantion, use the Lazy contrib module
 
 ---
 
@@ -287,6 +287,24 @@ Note:
 
 ---
 
+<pre><code class="highlightjs language-javascript">
+import {generate} from 'critical';
+
+const main = async (uri) => {
+ const html = await fetch(uri).then(r => r.text());
+ generate({
+   base: 'styleguide/',
+   html,
+   target: 'critical/critical.min.css',
+   width: 1300,
+   height: 900,
+ });
+}
+main('http://127.0.0.1:8080');
+</code></pre>
+
+---
+
 ### Asset rendering 🖌️
 
 <div class="fragment fade-in"><pre><code>asset.css.collection_renderer</code></pre></div>
@@ -303,30 +321,72 @@ Note:
 ### Fine grained control ⚙️
 
 <pre>
-<code class="highlightjs php">
+<code class="highlightjs language-php">
 public function render(array $css_assets): array {
-  // In here you have full control
+  $elements = [];
+  // In here you have full control.
+  return $elements;
 }
 </code>
 </pre>
 
 Note:
-- Things you can do here
-- preconnect hints for external DNS lookup
-- preload for font files
-- inline critical CSS based on the current route
-- use the swap method for other CSS
+- Here are some of the things you can do here
 
 ---
 
-### CSS swap 🔄
+### Pre-connect hints 🔌
 
 <pre>
-<code class="highlightjs html">
-<link rel="preload" href="{{ href }}" as="style" data-stylesheet-swap>
-<noscript>
- <link rel="stylesheet" href="{{ href }}">
-</noscript>
+<code class="highlightjs language-php">
+ $elements[] = [
+   '#type' => 'inline_template',
+   '#template' => '<link rel="preconnect" href="https://use.typekit.net" />',
+ ];
+</code>
+</pre>
+
+---
+
+### Pre-load 🏗️
+
+<pre>
+<code class="highlightjs language-php">
+ $elements[] = [
+   '#type' => 'inline_template',
+   '#template' => '<link rel="preload" href="https://use.typekit.net/some-font-that-is-licensed-url" as="font" type="font/woff2" crossorigin />',
+ ]
+</code>
+</pre>
+
+---
+
+### Inline critical css 🚀
+
+<pre>
+<code class="highlightjs language-php">
+$elements[] = [
+ '#type' => 'html_tag',
+ '#tag' => 'style',
+ '#value' => Markup::create(file_get_contents('/path/to/critical.min.css')),
+];
+</code>
+</pre>
+
+---
+
+### Deferring css via swap 🔄️
+
+<pre>
+<code class="highlightjs language-php">
+$elements[] = [
+  '#type' => 'inline_template',
+  '#template' => '<link rel="preload" href="/some/path.css" as="style" data-stylesheet-swap>
+    <noscript>
+      <link rel="stylesheet" href="/some/path.css">
+    </noscript>',
+  '#context' => ['href' => $href],
+]
 </code>
 </pre>
 
