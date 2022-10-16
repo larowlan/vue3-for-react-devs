@@ -148,7 +148,7 @@ Note:
 
 ---
 
-### Minimize the dom 🧩
+### Minimise the dom 🧩
 
 Theming with Bundle Classes, Layout builder and Twig
 
@@ -239,7 +239,7 @@ Note:
 
 ---
 
-### Optimizing fonts 🔠
+### Optimising fonts 🔠
 
 Note:
 - font-display: swap to show text immediately
