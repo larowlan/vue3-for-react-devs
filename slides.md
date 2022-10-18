@@ -14,12 +14,13 @@
 
 ### ⚠️ TLAs ahead
 
-<div class="fragment fade-in"><p>Play along with <span class="underline">TLA bingo</span></p>
-<p>larowlan.github.io/cwv-bingo/</p>
-<p>Win great* prizes</p>
+<div class="two-column"><div><p>Play along with <span class="underline">TLA bingo</span></p>
+<p>larowlan.github.io/cwv-bingo</p>
+<p>Win great* prizes</p></div>
+<div><img alt="QR code linking to bingo" class="qr" src="./images/bingo-qr.png"></div>
 </div>
-<div class="footnote fragment fade-in small">*Prizes may not be great</div>
 
+<div class="footnote fragment fade-in small">*Prizes may not be great</div>
 Note:
 
 - Lots of TLAs ahead (three letter acronyms) ahead
@@ -38,9 +39,9 @@ Note:
 
 - Why should I care
 - Core Web Vitals
-- Numerous studies show that improving them leads to better business outcomes
 - Series of measures that quantify a good experience for users of your site
 - You've all visited that site that takes forever, or feels to take forever, so you abandon it
+- Numerous studies show that improving them leads to better business outcomes
 - Vodafone 31% improvement lead to 8% increase in sales
 - Increased page rank (esp on mobile)
 - This link has more
