@@ -700,7 +700,7 @@ Notes:
 <code>
 import {useEffect} from 'react';
 const MyComponent = () => {
-  useEfect(() => {
+  useEffect(() => {
      // Do something on mount.
      return () => {
        // Do something on unmount.
