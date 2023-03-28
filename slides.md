@@ -1,5 +1,5 @@
 
-### Vue 3 for React developers ✨
+### Vue 3 for React Developers ✨
 #### And vice versa
 
 ---
@@ -744,7 +744,7 @@ Notes:
 
 ---
 
-### Questions ❓️
+### Questions❓️
 
 🗨️ larowlan #australia-nz / drupal.slack.org
 
