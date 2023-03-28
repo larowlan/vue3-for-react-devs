@@ -14,7 +14,7 @@
 Notes:
 - Assume you're comfortable with either React or Vue
 - Or at least have an understanding of building with a component framework
-- We're looking at the composition API for Vue, not the options API
+- We're looking at the composition API for Vue, not the options API. We're also going to look purely at SFC with the script setup sugar.
 - And bear in mind you can add JSX support for Vue, to get even closer to React, but that's out of scope for today
 - There will be a lot of code
 
@@ -34,12 +34,6 @@ Note:
 ---
 
 ### 📣 Hello World
-
-Component basics
-
----
-
-#### ... 📣 Hello World
 
 <div class="two-column">
 <pre class="react">
