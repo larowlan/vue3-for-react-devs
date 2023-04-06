@@ -2,6 +2,11 @@
 ### Vue 3 for React Developers ✨
 #### And vice versa
 
+Note:
+
+- Show of hands
+- Put yourself on a spectrum from React zealot to Vue zealot
+
 ---
 
 ### ℹ️ Overview
@@ -20,6 +25,20 @@ Notes:
 
 ---
 
+### 🥚 Background
+
+Note: 
+- Vue created by Evan You in 2014. Latest version is v3. For Drupal devs, v2 to v3 is like D7 to D8.
+- That's the only time I'll mention Drupal 😀
+- Community driven open source funded by sponsorship like Drupal
+- MIT licensed
+- React started at Facebook, majority of core developers funded by Meta
+- Originally a psuedo open source license with a non compete clause but now has a real open source license MIT
+- Current version is 18, first release was in 2013
+- If you want to know their origins search for the honeypot documentaries on YouTube, very interesting
+
+---
+
 ### 🐣 Getting started
 
 <div class="middle"><img alt="Vite logo" src="https://vitejs.dev/logo.svg" height="100" width="100" />tl;dr just use Vite</div>
@@ -30,6 +49,8 @@ Notes:
 
 Note:
 - Add -ts to the templates if that's your flavour
+- For those not using it, Vite does npm module resolving and pre-bundling, a dev server, hot module reloading.
+- Supports TS and JSX out of the box as well as css, postcss and css modules and can easily add support for preprocessors
 
 ---
 
@@ -277,6 +298,14 @@ Notes:
 
 ---
 
+### 🌡️ Temperature check
+
+Notes:
+
+- Anyone want to move further to the left or the right?
+
+---
+
 ### ↩️ Control structures - conditionals
 
 <div class="two-column">
@@ -291,7 +320,7 @@ const MyComponent = ({
     return <h1>Hi {name}</h1>;
   }
   return <h1>
-    Hi {name}{member && <span>🔐</span>
+    Hi {name}{member && <span>🔐</span>}
   </h1>;
 }
 </code>
@@ -479,6 +508,14 @@ Notes:
 
 ---
 
+### 🌡️ Temperature check
+
+Notes:
+
+- Anyone want to move further to the left or the right?
+
+---
+
 ### 🎨 Styling 
 
 <div class="two-column">
@@ -590,7 +627,7 @@ const MyComponent = () => {
   }, []);
   return {data.length > 0 && <ul>
     {data.map((user) => (
-      <li key="{user.id}">{user.name}</li>
+      <li key={user.id}>{user.name}</li>
     ))} </ul>}
 }
 </code>
@@ -623,6 +660,14 @@ Notes:
 - But let's assume you want to roll your own
 - For React you use the useEffect hook, which we're not going to cover in detail, its a session on its own
 - For Vue, refs can handle async, so you can just call the fetch in the setup script
+
+---
+
+### 🌡️ Temperature check
+
+Notes:
+
+- Anyone want to move further to the left or the right?
 
 ---
 
@@ -740,7 +785,8 @@ Notes:
 - These slides are available on my github pages if you need to refer to them
 - Which do you prefer?
 - For me Vue has a lot of nice DX features and as you saw, several things like forms, data fetching, styling just feel easier
-- However in React's favour is the ability to use JS in your templating, things like map, filter feel cleaner than v-if and v-for
+- However in React's favour is the ability to use JS in your templating, things like map, filter feel cleaner than v-if and v-for if outputting rows of data
+- Also of note the size of Vue is much smaller than React + ReactDom
 
 ---
 
