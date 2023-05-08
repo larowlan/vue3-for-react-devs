@@ -1,6 +1,4 @@
 
-### Vue 3 for React Developers ✨
-#### And vice versa
 
 Note:
 
