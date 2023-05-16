@@ -27,12 +27,14 @@ Notes:
 
 Note: 
 - Vue created by Evan You in 2014. Latest version is v3. For Drupal devs, v2 to v3 is like D7 to D8.
+- 16kb baseline, every feature 27kb
 - That's the only time I'll mention Drupal 😀
 - Community driven open source funded by sponsorship like Drupal
 - MIT licensed
 - React started at Facebook, majority of core developers funded by Meta
 - Originally a psuedo open source license with a non compete clause but now has a real open source license MIT
 - Current version is 18, first release was in 2013
+- About 137Kb with React and ReactDom
 - If you want to know their origins search for the honeypot documentaries on YouTube, very interesting
 
 ---
